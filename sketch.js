@@ -1,33 +1,22 @@
-let students = []
-
-let students = {
-  firstName: "Jackie",
-  lastName: "Bibi",
-  year: "Sophmore"
-
-}
-
+var cap;
 function setup() {
-
-console.log(student.firstName)
-
-students = [0] + "Jackie";
-students = [1] + "Monica";
-
-students.push("hAndy");
-students.push("sAndy");
-students.push("vAndy");
-students.push("bAndy");
-students.push("nAndy");
-students.push("mAndy");
-students.push("hAndy");
-students.push("jAndy");
-students.push("kAndy");
-students.push("lAndy");
-
-for (i = 0; i < students.length; 1++){
-c`${students[i]} is a great student`);
+  createCanvas(400, 400);
+  cap = createCapture(VIDEO);
+  cap.hide();
+  rectMode(CENTER);
+  noStroke();
 }
-
-
+function draw() {
+  background(50);
+  fill(255);
+  cap.loadPixels();
+  for (var cy = 0; cy < cap.height; cy += 10) {
+    for (var cx = 0; cx < cap.width; cx += 20) {
+      var offset = ((cy*cap.width)+cx)*4;
+      var xpos = (cx / cap.width) * width;
+      var ypos = (cy / cap.height) * height;
+      rect(xpos, ypos, 10,
+        10 * (cap.pixels[offset+1]/255));
+    }
+  }
 }
